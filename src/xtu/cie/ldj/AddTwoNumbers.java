@@ -1,8 +1,11 @@
 package xtu.cie.ldj;
 
 public class AddTwoNumbers {
-
-	
+	/**
+	 * 先求得链表的和，然后判断哪个链表是空，用非空的来进行操作
+	 * 最后检查是否进位
+	 * Accepted: 744ms
+	 */
 	public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
 		if(l1 == null) return l2;
 		if(l2 == null) return l1;
@@ -45,28 +48,122 @@ public class AddTwoNumbers {
 		return newList;
     }
 	
+	/**
+	 * 单独修改l1，当有一个链表为null时，再进行处理
+	 * Accepted: 456ms
+	 */
+	public static ListNode addTwoNumbers02(ListNode l1, ListNode l2) {
+		if(l1 == null) return l2;
+		if(l2 == null) return l1;
+		ListNode newList = l1;
+		ListNode tmpNode = newList;
+		
+		int add = 0;
+		while(l1 != null && l2 != null){
+			l1.val += l2.val + add;
+			if (l1.val >= 10) {
+				l1.val -= 10;
+				add = 1;
+			}else {
+				add = 0;
+			}
+			
+			tmpNode = l1;
+			
+			l1 = l1.next;
+			l2 = l2.next;
+		}
+		
+		if(l1 == null){
+			tmpNode.next = l2;
+		}
+		
+		while (tmpNode.next != null) {
+			tmpNode = tmpNode.next;
+			
+			tmpNode.val += add;
+			if (tmpNode.val >= 10) {
+				tmpNode.val -= 10;
+				add = 1;
+			}else {
+				add = 0;
+			}
+		}
+		
+		if (add == 1) {
+			tmpNode.next = new ListNode(1);
+		}
+		
+		return newList;
+	}
+	
+	/**
+	 * Accepted：492ms
+	 */
+	public static ListNode addTwoNumbers03(ListNode l1, ListNode l2) {
+		if(l1 == null) return l2;
+		if(l2 == null) return l1;
+		boolean addFlag = false;
+		ListNode newList = new ListNode(-1);
+		ListNode tmpNode = newList;
+		
+		while(l1 != null || l2 != null || addFlag){
+			if (l1 != null) {
+				tmpNode.next = l1;
+				l1 = l1.next;
+				tmpNode.next.next = null;
+			}
+			
+			if (l2 != null) {
+				if (tmpNode.next != null) {
+					tmpNode.next.val += l2.val;
+				}else {
+					tmpNode.next = l2;
+				}
+				l2 = l2.next;
+				tmpNode.next.next = null;
+			}
+			
+			if (addFlag) {
+				if(tmpNode.next != null){
+					tmpNode.next.val += 1;
+				}else {
+					tmpNode.next = new ListNode(1);
+				}
+				addFlag = false;
+			}
+			
+			if (tmpNode.next != null) {
+				if(tmpNode.next.val >= 10){
+					tmpNode.next.val -= 10;
+					addFlag = true;
+				}
+				tmpNode = tmpNode.next;
+			}
+		}
+		
+		return newList.next;
+	}
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		int[] arr1 = new int[]{2,4,3};
-		int[] arr2 = new int[]{5,6,4};
-		
-//		int[] arr1 = new int[]{2,4};
+//		int[] arr1 = new int[]{2,4,3};
 //		int[] arr2 = new int[]{5,6,4};
+		int[] arr1 = new int[]{0};
+		int[] arr2 = new int[]{2,7,8};
 		
 		ListNode l1 = null,l1_tmp = null;
 		ListNode l2 = null,l2_tmp = null;
 		
 		for (int i = 0; i < arr1.length; i++) {
 			ListNode tmp = new ListNode(arr1[i]);
-			if (i == 0)	{ l1 = tmp;	l1_tmp = l1;}
+			if (i == 0)	{ l1 = tmp;	l1_tmp = l1; continue;}
 			l1_tmp.next = tmp;
 			l1_tmp = l1_tmp.next;
 		}
 		
 		for (int i = 0; i < arr2.length; i++) {
 			ListNode tmp = new ListNode(arr2[i]);
-			if (i == 0)	{ l2 = tmp;	l2_tmp = l2;}
+			if (i == 0)	{ l2 = tmp;	l2_tmp = l2; continue;}
 			l2_tmp.next = tmp;
 			l2_tmp = l2_tmp.next;
 		}
@@ -74,7 +171,7 @@ public class AddTwoNumbers {
 		printList(l1,"l1");
 		printList(l2,"l2");
 		
-		l1 = addTwoNumbers(l1, l2);
+		l1 = addTwoNumbers03(l1, l2);
 		printList(l1,"l1");
 		
 	}
@@ -88,7 +185,6 @@ public class AddTwoNumbers {
 		}
 		System.out.println(tmp.val);
 	}
-
 }
 
 class ListNode {
