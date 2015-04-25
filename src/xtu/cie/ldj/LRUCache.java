@@ -10,7 +10,7 @@ public class LRUCache {
 	private ListNode tail;	
 	private HashMap<Integer, ListNode> keyNodeMap;
 	
-	class ListNode{
+	private class ListNode{
 		int key;
 		int value;
 		ListNode pre,next;

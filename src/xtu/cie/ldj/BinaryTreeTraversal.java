@@ -3,13 +3,6 @@ package xtu.cie.ldj;
 import java.util.ArrayList;
 
 public class BinaryTreeTraversal {
-	class TreeNode {
-	    int val;
-	    TreeNode left;
-	    TreeNode right;
-	    TreeNode(int x) { val = x; }
-	}
-	
 	ArrayList<Integer> postOrderList = new ArrayList<Integer>();
 	
 	public ArrayList<Integer> postorderTraversal(TreeNode root) {
@@ -38,5 +31,12 @@ public class BinaryTreeTraversal {
 			preOrderTraversalIteratively(root.left);
 			preOrderTraversalIteratively(root.right);
 		}
+	}
+	
+	private class TreeNode {
+	    int val;
+	    TreeNode left;
+	    TreeNode right;
+	    TreeNode(int x) { val = x; }
 	}
 }

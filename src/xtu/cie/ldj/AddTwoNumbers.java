@@ -185,13 +185,14 @@ public class AddTwoNumbers {
 		}
 		System.out.println(tmp.val);
 	}
-}
-
-class ListNode {
-	int val;
-	ListNode next;
-	ListNode(int x) {
-		val = x;
-		next = null;
+	
+	private static class ListNode {
+		int val;
+		ListNode next;
+		ListNode(int x) {
+			val = x;
+			next = null;
+		}
 	}
 }
+
