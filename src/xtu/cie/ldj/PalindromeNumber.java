@@ -1,6 +1,6 @@
 package xtu.cie.ldj;
 
-public class PalindromeNumberNotFinish {
+public class PalindromeNumber {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -29,15 +29,5 @@ public class PalindromeNumberNotFinish {
 		}
 		
 		return flag;
-	}
-	
-	public static boolean isPalindrome2(int x) {
-		int y = 0;
-		int temp = x;
-//		while(temp) {
-//			
-//		}
-		
-		return false;
 	}
 }
