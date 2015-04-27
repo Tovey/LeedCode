@@ -1,18 +1,6 @@
 package xtu.cie.ldj;
 
 public class SearchinRotatedSortedArray {
-    private int binarySearchSorted(int[] nums,int s,int e,int target){
-    	while(s <= e){
-    		int mid = (s + e) / 2;
-    		if(nums[mid] == target)
-    			return mid;
-    		else if(nums[mid] < target)
-    			s = mid + 1;
-    		else e = mid - 1;
-    	}
-    	
-    	return -1;
-    }
 	
 	public int search(int[] nums, int target) {
         if(nums == null || nums.length == 0) return -1;
