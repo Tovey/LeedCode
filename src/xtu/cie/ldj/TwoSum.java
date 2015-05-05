@@ -1,9 +1,6 @@
 package xtu.cie.ldj;
 
 import java.util.HashMap;
-/**
- * 数组不一定有序，不能用二分查找
- */
 public class TwoSum {
 	
     public static int[] twoSum(int[] numbers, int target) {
