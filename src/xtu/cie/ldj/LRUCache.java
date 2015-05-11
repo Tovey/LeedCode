@@ -25,7 +25,7 @@ public class LRUCache {
 	        this.capacity = capacity;
 	        this.currentSize = 0;
 	        
-	        this.keyNodeMap = new HashMap<Integer, ListNode>();
+	        this.keyNodeMap = new HashMap<Integer, ListNode>(capacity);
 	        this.head = new ListNode(-1, -1);
 	        this.tail = new ListNode(-1, -1);
 	        this.head.next = this.tail;

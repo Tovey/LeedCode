@@ -1,7 +1,5 @@
 package xtu.cie.ldj;
 
-import xtu.cie.ldj.ReorderList.ListNode;
-
 public class ReverseLinkedList {
 	// use recursive
 	public ListNode reverseList_1(ListNode head) {
