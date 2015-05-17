@@ -41,15 +41,30 @@ public class CountAndSay {
 		return sb.toString();
 	}
 	
+	public String countAndSay_2(int n) {
+		StringBuilder result = new StringBuilder("1");
+		for (int i = 1; i < n; i++) {
+			StringBuilder pre = result;
+			result = new StringBuilder();
+			int j = 0;
+			while (j < pre.length()) {
+				char ch = pre.charAt(j ++);
+				int count = 1;
+				while (j < pre.length() && pre.charAt(j) == ch) {
+					count ++;
+					j++;
+				}
+				result.append(count);
+				result.append(ch);
+			}
+		}
+		return result.toString();
+	}
+	
 	public static void main(String[] args) {
 		CountAndSay countAndSay = new CountAndSay();
-		System.out.println(countAndSay.countAndSay(1));
-		System.out.println(countAndSay.countAndSay(2));
-		System.out.println(countAndSay.countAndSay(3));
-		System.out.println(countAndSay.countAndSay(4));
-		System.out.println(countAndSay.countAndSay(5));
-		System.out.println(countAndSay.countAndSay(6));
-		System.out.println(countAndSay.countAndSay(7));
+		System.out.println(countAndSay.countAndSay_2(4));
+
 		
 	}
 }
