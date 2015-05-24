@@ -1,6 +1,43 @@
 package xtu.cie.ldj;
 
 public class AddTwoNumbers {
+	
+	public static ListNode addTwoNumbers04(ListNode l1, ListNode l2) {
+		ListNode list = new ListNode(0);
+		ListNode tmpNode = list;
+		int add = 0;
+		while(l1 != null || l2 != null){
+			if(l1 != null){
+				tmpNode.next = l1;
+				l1 = l1.next;
+				tmpNode.next.next = null;
+			}
+			if(l2 != null){
+				if(tmpNode.next == null){
+					tmpNode.next = l2;
+					l2 = l2.next;
+					tmpNode.next.next = null;
+				}else{
+					tmpNode.next.val += l2.val;
+					l2 = l2.next;
+				}
+			}
+			tmpNode.next.val += add;
+			add = 0;
+			if(tmpNode.next.val >= 10){
+				tmpNode.next.val -= 10;
+				add = 1;
+			}
+			tmpNode = tmpNode.next;
+		}
+		if(add == 1){
+			tmpNode.next = new ListNode(1);
+		}
+		
+		return list.next;
+	}
+	
+	
 	/**
 	 * 先求得链表的和，然后判断哪个链表是空，用非空的来进行操作
 	 * 最后检查是否进位
