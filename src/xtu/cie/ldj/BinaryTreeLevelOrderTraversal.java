@@ -53,14 +53,4 @@ public class BinaryTreeLevelOrderTraversal {
 
 		return lists;
 	}
-
-	private class TreeNode {
-		int val;
-		TreeNode left;
-		TreeNode right;
-
-		TreeNode(int x) {
-			val = x;
-		}
-	}
 }
